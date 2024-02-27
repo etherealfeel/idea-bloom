@@ -8,6 +8,20 @@ export const metadata: Metadata = {
     title: 'Idea Bloom',
     description:
         'Organized platform for planning and transforming ideas into action',
+    icons: {
+        icon: [
+            {
+                media: '(prefers-color-scheme: light)',
+                url: 'assets/icons/logo.svg',
+                href: 'assets/icons/logo.svg',
+            },
+            {
+                media: '(prefers-color-scheme: dark)',
+                url: 'assets/icons/logo-dark.svg',
+                href: 'assets/icons/logo-dark.svg',
+            },
+        ],
+    },
 };
 
 export default function RootLayout({
