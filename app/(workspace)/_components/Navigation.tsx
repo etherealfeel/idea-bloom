@@ -106,7 +106,7 @@ const Navigation = () => {
         toast.promise(promise, {
             loading: 'Creating document...',
             success: 'Document created',
-            error: 'Failed to create document',
+            error: 'Failed to create document.',
         });
     };
 
@@ -124,7 +124,7 @@ const Navigation = () => {
                     role="button"
                     onClick={collapseSidebar}
                     className={cn(
-                        'w-6 h-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition',
+                        'w-6 h-6 text-muted-foreground rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition',
                         isMobile && 'opacity-100'
                     )}
                 >

@@ -1,13 +1,28 @@
 'use client';
 
 import { Id } from '@convex/_generated/dataModel';
-import { LucideIcon, ChevronDown, ChevronRight, Plus } from 'lucide-react';
+import {
+    LucideIcon,
+    ChevronDown,
+    ChevronRight,
+    Plus,
+    MoreHorizontal,
+    Trash,
+} from 'lucide-react';
 import { cn } from '@lib/utils';
 import { Skeleton } from '@components/ui/Skeleton';
 import { useMutation } from 'convex/react';
 import { api } from '@convex/_generated/api';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import {
+    DropdownMenu,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+    DropdownMenuContent,
+    DropdownMenuItem,
+} from '@components/ui/DropdownMenu';
+import { useUser } from '@clerk/clerk-react';
 
 interface ItemProps {
     id?: Id<'documents'>;
@@ -35,8 +50,12 @@ const Item = ({
     onExpand,
     expanded,
 }: ItemProps) => {
+    const { user } = useUser();
     const router = useRouter();
+
     const create = useMutation(api.documents.create);
+    const archive = useMutation(api.documents.archive);
+
     const handleExpand = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
     ) => {
@@ -54,13 +73,26 @@ const Item = ({
                 if (!expanded) {
                     onExpand?.();
                 }
-                // router.push(`/documents/${documentId}`);
+                //TODO: router.push(`/documents/${documentId}`);
             }
         );
         toast.promise(promise, {
             loading: 'Creating document...',
             success: 'Document created!',
-            error: 'Failed to create document',
+            error: 'Failed to create document.',
+        });
+    };
+
+    const handleArchive = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) => {
+        event.stopPropagation();
+        if (!id) return;
+        const promise = archive({ id });
+        toast.promise(promise, {
+            loading: 'Deleting document...',
+            success: 'Moved to trash!',
+            error: 'Failed to archive document.',
         });
     };
 
@@ -78,7 +110,7 @@ const Item = ({
             {!!id && (
                 <div
                     role="button"
-                    className="h-full rounded-sm hover:bg-neutral-300 dark:bg-neutral-600 mr-1"
+                    className="h-full rounded-sm hover:bg-neutral-200 dark:bg-neutral-600 mr-1"
                     onClick={handleExpand}
                 >
                     <ChevronIcon className="w-4 h4 shrink-0 text-muted-foreground/50" />
@@ -97,10 +129,38 @@ const Item = ({
             )}
             {!!id && (
                 <div className="ml-auto flex items-center gap-x-2">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger
+                            onClick={(e) => e.stopPropagation()}
+                            asChild
+                        >
+                            <div
+                                role="button"
+                                className="p-[2px] opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                            >
+                                <MoreHorizontal className="w-4 h-4 text-muted-foreground" />
+                            </div>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            className="w-60"
+                            align="start"
+                            side="right"
+                            forceMount
+                        >
+                            <DropdownMenuItem onClick={handleArchive}>
+                                <Trash className="w-4 h-4 mr-2" />
+                                Delete
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <div className="text-xs text-muted-foreground p-2">
+                                Last edited by: {user?.fullName}
+                            </div>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                     <div
                         role="button"
                         onClick={handleCreate}
-                        className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
+                        className="p-[2px] opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-600"
                     >
                         <Plus className="w-4 h-4 text-muted-foreground" />
                     </div>
