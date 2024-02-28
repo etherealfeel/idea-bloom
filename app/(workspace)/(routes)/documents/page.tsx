@@ -1,11 +1,26 @@
 'use client';
 import { useUser } from '@clerk/clerk-react';
 import { Button } from '@components/ui/Button';
+import { useMutation } from 'convex/react';
 import { PlusCircleIcon } from 'lucide-react';
 import Image from 'next/image';
+import { api } from '@convex/_generated/api';
+import { toast } from 'sonner';
 
 const DocumentsPage = () => {
     const { user } = useUser();
+    const create = useMutation(api.documents.create);
+
+    const handleCreate = () => {
+        const promise = create({ title: 'Untitled' });
+
+        toast.promise(promise, {
+            loading: 'Creating document...',
+            success: 'Document created',
+            error: 'Failed to create document',
+        });
+    };
+
     return (
         <div className="h-full flex flex-col items-center justify-center space-y-4">
             <Image
@@ -18,7 +33,7 @@ const DocumentsPage = () => {
             <h2 className="text-lg font-medium">
                 Welcome to {user?.firstName}&apos;s Ideas
             </h2>
-            <Button size="lg">
+            <Button size="lg" onClick={handleCreate}>
                 <span className="text-lg">Create an Idea</span>
                 <PlusCircleIcon className="w-6 h-6 ml-2" />
             </Button>
