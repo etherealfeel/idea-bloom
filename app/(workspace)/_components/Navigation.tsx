@@ -25,7 +25,8 @@ import {
     PopoverTrigger,
     PopoverContent,
 } from '@components/ui/Popover';
-import TrashBox from './TrashBox'
+import TrashBox from './TrashBox';
+import { useSearchStore } from '@hooks/useSearchStore';
 
 const Navigation = () => {
     const isMobile = useMediaQuery('(max-width: 768px)');
@@ -34,6 +35,7 @@ const Navigation = () => {
     const navbarRef = useRef<ElementRef<'div'>>(null);
     const [isResetting, setIsResetting] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(isMobile);
+    const search = useSearchStore();
 
     const pathname = usePathname();
 
@@ -143,7 +145,7 @@ const Navigation = () => {
                     <UserItem />
                     <Separator className="my-2" />
                     <Item
-                        onClick={() => {}}
+                        onClick={search.onOpen}
                         label="Search"
                         icon={Search}
                         isSearch
