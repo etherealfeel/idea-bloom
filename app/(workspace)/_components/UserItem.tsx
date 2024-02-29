@@ -1,5 +1,5 @@
 'use client';
-import { ChevronsLeftRight } from 'lucide-react';
+import { UserRoundCog } from 'lucide-react';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -8,7 +8,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@components/ui/DropdownMenu';
-import { Avatar, AvatarImage } from '@components/ui/avatar';
+import { Avatar, AvatarImage } from '@components/ui/Avatar';
 import { SignOutButton, useUser } from '@clerk/clerk-react';
 
 const UserItem = () => {
@@ -28,7 +28,7 @@ const UserItem = () => {
                             {user?.fullName}
                         </span>
                     </div>
-                    <ChevronsLeftRight className="w-5 h-5 rotate-90 ml-2 text-muted-foreground" />
+                    <UserRoundCog className="w-5 h-5 ml-2 text-muted-foreground" />
                 </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent

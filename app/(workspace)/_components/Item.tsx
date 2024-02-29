@@ -34,7 +34,7 @@ interface ItemProps {
     onExpand?: () => void;
 
     label: string;
-    onClick: () => void;
+    onClick?: () => void;
     icon: LucideIcon;
 }
 
@@ -149,7 +149,7 @@ const Item = ({
                         >
                             <DropdownMenuItem onClick={handleArchive}>
                                 <Trash className="w-4 h-4 mr-2" />
-                                Delete
+                                Archive
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <div className="text-xs text-muted-foreground p-2">
