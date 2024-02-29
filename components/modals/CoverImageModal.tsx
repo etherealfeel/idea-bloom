@@ -25,12 +25,16 @@ const CoverImageModal = () => {
         coverImage.onClose();
     };
 
-    const handleChange = async (file: File) => {
+    const handleChange = async (file?: File) => {
+        if (!file) return;
         setIsSubmitting(true);
         setFile(file);
 
         const res = await edgestore.publicFiles.upload({
             file,
+            options: {
+                replaceTargetUrl: coverImage.url,
+            },
         });
 
         await update({
