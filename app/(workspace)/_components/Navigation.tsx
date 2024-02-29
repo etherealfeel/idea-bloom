@@ -27,6 +27,7 @@ import {
 } from '@components/ui/Popover';
 import TrashBox from './TrashBox';
 import { useSearchStore } from '@hooks/useSearchStore';
+import { useSettingsStore } from '@hooks/useSettingsStore';
 
 const Navigation = () => {
     const isMobile = useMediaQuery('(max-width: 768px)');
@@ -36,6 +37,7 @@ const Navigation = () => {
     const [isResetting, setIsResetting] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(isMobile);
     const search = useSearchStore();
+    const settings = useSettingsStore();
 
     const pathname = usePathname();
 
@@ -150,7 +152,11 @@ const Navigation = () => {
                         icon={Search}
                         isSearch
                     />
-                    <Item onClick={() => {}} label="Settings" icon={Settings} />
+                    <Item
+                        onClick={settings.onOpen}
+                        label="Settings"
+                        icon={Settings}
+                    />
                     <Item
                         onClick={handleCreate}
                         label="New Document"

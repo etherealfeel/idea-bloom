@@ -4,6 +4,7 @@ import { Toaster } from 'sonner';
 import './globals.css';
 import { ThemeProvider } from '@components/providers/themeProvider';
 import { ConvexClientProvider } from '@components/providers/convexProvider';
+import { ModalProvider } from '@components/providers/modalProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -44,6 +45,7 @@ export default function RootLayout({
                         storageKey="idea-bloom-theme-2"
                     >
                         <Toaster position="bottom-center" />
+                        <ModalProvider />
                         {children}
                     </ThemeProvider>
                 </ConvexClientProvider>
