@@ -5,6 +5,9 @@ import { Skeleton } from '@components/ui/Skeleton';
 import { api } from '@convex/_generated/api';
 import { Id } from '@convex/_generated/dataModel';
 import { useQuery } from 'convex/react';
+import { useMutation } from 'convex/react';
+import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
 
 interface DocumentIdPageProps {
     params: {
@@ -13,9 +16,22 @@ interface DocumentIdPageProps {
 }
 
 const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
+    const Editor = useMemo(
+        () => dynamic(() => import('@components/Editor'), { ssr: false }),
+        []
+    );
     const document = useQuery(api.documents.getById, {
         documentId: params.documentId,
     });
+
+    const update = useMutation(api.documents.update);
+
+    const handleChange = (content: string) => {
+        update({
+            id: params.documentId,
+            content,
+        });
+    };
 
     if (document === undefined) {
         return (
@@ -42,6 +58,10 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
             <Cover url={document.coverImage} />
             <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
                 <Toolbar initialData={document} />
+                <Editor
+                    onChange={handleChange}
+                    initialContent={document.content}
+                />
             </div>
         </div>
     );

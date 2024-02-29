@@ -9,7 +9,7 @@ import {
     Settings,
     Trash,
 } from 'lucide-react';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useRef, ElementRef, useState, useEffect } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
 import { cn } from '@lib/utils';
@@ -39,6 +39,7 @@ const Navigation = () => {
     const [isCollapsed, setIsCollapsed] = useState(isMobile);
     const search = useSearchStore();
     const params = useParams();
+    const router = useRouter();
     const settings = useSettingsStore();
 
     const pathname = usePathname();
@@ -116,7 +117,9 @@ const Navigation = () => {
     };
 
     const handleCreate = () => {
-        const promise = create({ title: 'Untitled' });
+        const promise = create({ title: 'Untitled' }).then((documentId) =>
+            router.push(`/documents/${documentId}`)
+        );
 
         toast.promise(promise, {
             loading: 'Creating document...',
