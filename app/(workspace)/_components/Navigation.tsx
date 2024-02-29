@@ -150,7 +150,7 @@ const Navigation = () => {
                 </div>
                 <div>
                     <UserItem />
-                    <Separator className="my-2" />
+                    <Separator className="mb-2" />
                     <Item
                         onClick={search.onOpen}
                         label="Search"
@@ -168,7 +168,7 @@ const Navigation = () => {
                         icon={PlusSquare}
                     />
                 </div>
-                <Separator className="my-2" />
+                <Separator className="mt-2" />
                 <div className="mt-4">
                     <DocumentList />
                     <Item
@@ -176,8 +176,9 @@ const Navigation = () => {
                         icon={Plus}
                         onClick={handleCreate}
                     />
+                    <Separator className="my-2" />
                     <Popover>
-                        <PopoverTrigger className="w-full mt-4">
+                        <PopoverTrigger className="w-full">
                             <Item label="Trash" icon={Trash} />
                         </PopoverTrigger>
                         <PopoverContent

@@ -12,12 +12,14 @@ const Heading = () => {
 
     return (
         <div className="max-w-3xl space-y-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-right">
                 Transform your ideas into actions.&nbsp;
-                <span className="underline">Idea Bloom</span>
+                <span className="underline italic">Idea Bloom</span>
             </h1>
             <h3 className="text-base sm:text-xl md:text-2xl font-medium">
-                Idea boom is a platform...
+                Idea Bloom is a platform that enables you to organize and
+                nurture your ideas with ease. Explore digital workspace where
+                ideas can grow and flourish effectively
             </h3>
             {isLoading && (
                 <div className="flex items-center justify-center w-full">

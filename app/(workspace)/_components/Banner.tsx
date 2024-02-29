@@ -44,7 +44,7 @@ const Banner = ({ documentId }: BannerProps) => {
 
     return (
         <div className="w-full bg-rose-500 text-center text-sm p-4 text-white ">
-            <div className="flex items-center gap-x-2 justify-center bg-rose-400 dark:bg-[1f1f1f] p-4 rounded-xl">
+            <div className="flex items-center gap-x-2 justify-center bg-rose-400 dark:bg-[#1f1f1f] p-4 rounded-xl">
                 <p>This document is currently archived.</p>
                 <Button
                     size="sm"

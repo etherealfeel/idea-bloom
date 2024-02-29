@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import { Toaster } from 'sonner';
 import './globals.css';
 import { ThemeProvider } from '@components/providers/themeProvider';
@@ -7,25 +7,14 @@ import { ConvexClientProvider } from '@components/providers/convexProvider';
 import { ModalProvider } from '@components/providers/modalProvider';
 import { EdgeStoreProvider } from '@lib/edgestore';
 
-const inter = Inter({ subsets: ['latin'] });
+const roboto = Roboto({ subsets: ['latin'], weight: ['400', '700'] });
 
 export const metadata: Metadata = {
     title: 'Idea Bloom',
     description:
         'Organized platform for planning and transforming ideas into action',
     icons: {
-        icon: [
-            {
-                media: '(prefers-color-scheme: light)',
-                url: 'assets/icons/logo.svg',
-                href: 'assets/icons/logo.svg',
-            },
-            {
-                media: '(prefers-color-scheme: dark)',
-                url: 'assets/icons/logo-dark.svg',
-                href: 'assets/icons/logo-dark.svg',
-            },
-        ],
+        icon: 'assets/icons/logo.svg',
     },
 };
 
@@ -36,7 +25,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={inter.className}>
+            <body className={roboto.className}>
                 <ConvexClientProvider>
                     <EdgeStoreProvider>
                         <ThemeProvider

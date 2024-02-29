@@ -21,10 +21,10 @@ const UserItem = () => {
                     className="flex items-center text-sm p-3 w-full hover:bg-primary/5"
                 >
                     <div className="flex items-center max-w-[150px] gap-x-2">
-                        <Avatar className="w-5 h-5">
+                        <Avatar className="w-8 h-8">
                             <AvatarImage src={user?.imageUrl} />
                         </Avatar>
-                        <span className="text-start font-medium line-clamp-1">
+                        <span className="text-start text-md line-clamp-1">
                             {user?.fullName}
                         </span>
                     </div>
@@ -42,13 +42,13 @@ const UserItem = () => {
                         {user?.emailAddresses[0].emailAddress}
                     </p>
                     <div className="flex items-center gap-2">
-                        <div className="rounded-md bg-secondary p-1">
-                            <Avatar className="w-10 h-10">
+                        <div className="rounded-md bg-secondary p-2">
+                            <Avatar className="w-12 h-12">
                                 <AvatarImage src={user?.imageUrl} />
                             </Avatar>
                         </div>
                         <div className="spacy-y-1">
-                            <p className="text-sm line-clamp-1">
+                            <p className="text-md line-clamp-1">
                                 {user?.fullName}
                             </p>
                         </div>

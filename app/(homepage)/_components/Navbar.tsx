@@ -8,6 +8,7 @@ import { SignInButton, UserButton } from '@clerk/clerk-react';
 import { Button } from '@components/ui/Button';
 import { Spinner } from '@components/Spinner';
 import Link from 'next/link';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Navbar = () => {
     const { isAuthenticated, isLoading } = useConvexAuth();
@@ -20,7 +21,7 @@ const Navbar = () => {
             )}
         >
             <Logo />
-            <div className="md:ml-auto md:justify-between w-full flex items-center gap-x-2">
+            <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
                 {isLoading && <Spinner />}
                 {!isAuthenticated && !isLoading && (
                     <>
@@ -39,7 +40,13 @@ const Navbar = () => {
                 {isAuthenticated && !isLoading && (
                     <>
                         <Button variant="ghost" size="sm" asChild>
-                            <Link href="/documents">Enter Idea Bloom</Link>
+                            <Link href="/documents">
+                                <div className="flex items-center">
+                                    <ChevronLeft />
+                                    Workspace
+                                    <ChevronRight />
+                                </div>
+                            </Link>
                         </Button>
                         <UserButton afterSignOutUrl="/" />
                     </>

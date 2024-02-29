@@ -147,7 +147,10 @@ const Item = ({
                             side="right"
                             forceMount
                         >
-                            <DropdownMenuItem onClick={handleArchive}>
+                            <DropdownMenuItem
+                                onClick={handleArchive}
+                                className="cursor-pointer"
+                            >
                                 <Trash className="w-4 h-4 mr-2" />
                                 Archive
                             </DropdownMenuItem>

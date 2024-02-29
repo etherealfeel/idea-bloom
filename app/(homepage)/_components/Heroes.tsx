@@ -8,7 +8,7 @@ const Heroes = () => {
                     <Image
                         src="/assets/images/documents.png"
                         fill
-                        className="object-contain dark:block hidden dark:invert"
+                        className="object-contain dark:invert"
                         alt="Documents"
                     />
                 </div>
@@ -16,7 +16,7 @@ const Heroes = () => {
                     <Image
                         src="/assets/images/edit.png"
                         fill
-                        className="object-contain dark:block hidden dark:invert"
+                        className="object-contain dark:invert"
                         alt="Edit"
                     />
                 </div>
