@@ -8,23 +8,11 @@ const Heroes = () => {
                     <Image
                         src="/assets/images/documents.png"
                         fill
-                        className="object-contain dark:hidden"
-                        alt="Documents"
-                    />
-                    <Image
-                        src="/assets/images/documents.png"
-                        fill
                         className="object-contain dark:block hidden dark:invert"
                         alt="Documents"
                     />
                 </div>
                 <div className="relative w-[120px] h-[120px] sm:block hidden">
-                    <Image
-                        src="/assets/images/edit.png"
-                        fill
-                        className="object-contain dark:hidden"
-                        alt="Edit"
-                    />
                     <Image
                         src="/assets/images/edit.png"
                         fill
