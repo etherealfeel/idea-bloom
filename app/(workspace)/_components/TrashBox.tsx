@@ -34,6 +34,10 @@ const TrashBox = () => {
             success: 'Document deleted!',
             error: 'Failed to delete document.',
         });
+
+        if (params.documentId === documentId) {
+            router.push('/documents');
+        }
     };
 
     const handleRestore = (
@@ -47,10 +51,6 @@ const TrashBox = () => {
             success: 'Document restored!',
             error: 'Failed to restore document.',
         });
-
-        if (params.documentId === documentId) {
-            router.push('/documents');
-        }
     };
 
     if (documents === undefined) {
